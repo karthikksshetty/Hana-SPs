@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="table_out" applyPrivilegeType="ANALYTIC_PRIVILEGE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="2.3" defaultClient="$$client$$" visibility="internal" outputViewType="Projection" calculationScenarioType="TREE_BASED" enforceSqlExecution="false">
+<descriptions defaultDescription="table_out"/>
+<defaultSchema schemaName="FIRST"/>
+<localVariables>
+  <variable id="IP_ID" parameter="true">
+    <descriptions defaultDescription="IP_ID"/>
+    <variableProperties datatype="INTEGER" length="10" scale="0" mandatory="true">
+      <valueDomain type="AttributeValue">
+        <attribute name="ID"/>
+      </valueDomain>
+      <selection multiLine="true"/>
+      <defaultRange/>
+    </variableProperties>
+  </variable>
+</localVariables>
+<variableMappings/>
+<dataSources>
+  <DataSource id="EMPLOYEE" type="DATA_BASE_TABLE">
+    <viewAttributes allViewAttributes="true"/>
+    <columnObject schemaName="FIRST" columnObjectName="EMPLOYEE"/>
+  </DataSource>
+</dataSources>
+<calculationViews/>
+<logicalModel id="EMPLOYEE">
+  <attributes>
+    <attribute id="ID" key="true" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ID"/>
+      <keyMapping schemaName="FIRST" columnObjectName="EMPLOYEE" columnName="ID"/>
+    </attribute>
+    <attribute id="NAME" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NAME"/>
+      <keyMapping schemaName="FIRST" columnObjectName="EMPLOYEE" columnName="NAME"/>
+    </attribute>
+    <attribute id="DESIGNATION" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DESIGNATION"/>
+      <keyMapping schemaName="FIRST" columnObjectName="EMPLOYEE" columnName="DESIGNATION"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

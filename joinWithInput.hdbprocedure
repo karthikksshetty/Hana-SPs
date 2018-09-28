@@ -1,0 +1,17 @@
+PROCEDURE "FIRST"."test::joinWithInput" (in inputId int, out outputData "FIRST"."JOINOUT")
+   LANGUAGE SQLSCRIPT
+   SQL SECURITY INVOKER
+   --DEFAULT SCHEMA <default_schema_name>
+   READS SQL DATA AS
+BEGIN
+   /*************************************
+       Write your procedure logic 
+   *************************************/
+   outputData = SELECT * FROM(SELECT "FIRST"."EMPLOYEE"."ID" as "EMPLOYEE_ID",
+       "FIRST"."EMPLOYEE"."NAME" as "EMPLOYEE_NAME",
+       "FIRST"."EMPLOYEE"."MOBILE_NUMBER" as "MOBILE_NUMBER",
+       "FIRST"."SALARY_STRUCTURE"."GROSS_MONTHLY" as "GROSS_MONTHLY",
+        "FIRST"."SALARY_STRUCTURE"."BASIC_MONTHLY" as "BASIC_MONTHLY"
+       FROM "FIRST"."EMPLOYEE" INNER JOIN "FIRST"."SALARY_STRUCTURE" ON "FIRST"."EMPLOYEE"."ID"="FIRST"."SALARY_STRUCTURE"."ID")
+   WHERE EMPLOYEE_ID=:inputId;
+END

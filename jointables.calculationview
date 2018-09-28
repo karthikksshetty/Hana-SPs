@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="jointables" applyPrivilegeType="ANALYTIC_PRIVILEGE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="2.3" defaultClient="$$client$$" visibility="internal" outputViewType="Projection" calculationScenarioType="TREE_BASED" enforceSqlExecution="false">
+<descriptions defaultDescription="jointables"/>
+<localVariables>
+  <variable id="ID_INPUT" parameter="true">
+    <descriptions defaultDescription="ID_INPUT"/>
+    <variableProperties datatype="INTEGER" length="10" scale="0" mandatory="true">
+      <valueDomain type="AttributeValue">
+        <attribute name="ID"/>
+      </valueDomain>
+      <selection multiLine="true"/>
+      <defaultRange/>
+    </variableProperties>
+  </variable>
+</localVariables>
+<variableMappings/>
+<dataSources>
+  <DataSource id="EMPLOYEE" type="DATA_BASE_TABLE">
+    <viewAttributes allViewAttributes="true"/>
+    <columnObject schemaName="FIRST" columnObjectName="EMPLOYEE"/>
+  </DataSource>
+  <DataSource id="SALARY_STRUCTURE" type="DATA_BASE_TABLE">
+    <viewAttributes allViewAttributes="true"/>
+    <columnObject schemaName="FIRST" columnObjectName="SALARY_STRUCTURE"/>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="ID"/>
+      <viewAttribute id="NAME"/>
+      <viewAttribute id="DESIGNATION"/>
+      <viewAttribute id="GROSS_MONTHLY"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="#EMPLOYEE">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NAME" source="NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DESIGNATION" source="DESIGNATION"/>
+    </input>
+    <input node="#SALARY_STRUCTURE">
+      <mapping xsi:type="Calculation:AttributeMapping" target="GROSS_MONTHLY" source="GROSS_MONTHLY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+    </input>
+    <joinAttribute name="ID"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_1">
+  <attributes>
+    <attribute id="ID" key="true" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ID"/>
+      <keyMapping columnObjectName="Join_1" columnName="ID"/>
+    </attribute>
+    <attribute id="NAME" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NAME"/>
+      <keyMapping columnObjectName="Join_1" columnName="NAME"/>
+    </attribute>
+    <attribute id="DESIGNATION" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DESIGNATION"/>
+      <keyMapping columnObjectName="Join_1" columnName="DESIGNATION"/>
+    </attribute>
+    <attribute id="GROSS_MONTHLY" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="GROSS_MONTHLY"/>
+      <keyMapping columnObjectName="Join_1" columnName="GROSS_MONTHLY"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="86" y="181"/>
+      <rectangleSize height="30" width="140"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
