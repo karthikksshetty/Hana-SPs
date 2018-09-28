@@ -1,0 +1,11 @@
+PROCEDURE "FIRST"."test::selectData"(in input_condition int, out details "FIRST"."SALARY_STRUCTURE")
+   LANGUAGE SQLSCRIPT
+   SQL SECURITY INVOKER
+   --DEFAULT SCHEMA <default_schema_name>
+   READS SQL DATA AS
+BEGIN
+   /*************************************
+       Write your procedure logic 
+   *************************************/
+   details = SELECT * FROM "FIRST"."SALARY_STRUCTURE" WHERE ID=:input_condition;
+END
